@@ -233,17 +233,7 @@ nav{
   word-wrap: break-word;
 }
 
-/* mbti */
-.bg-cogs:nth-child(1){
-  background: $orange-600;
-  color: #ffffff;
-}
-.bg-cogs:nth-child(2){
-  background: $orange-400;
-}
-.bg-cogs:nth-child(3){
-  background: $orange-200;
-}
-.bg-cogs:nth-child(4){
-  background: $orange-100;
+#monarchy-list{
+  .row{
+  }
 }

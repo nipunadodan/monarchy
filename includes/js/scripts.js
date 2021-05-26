@@ -154,3 +154,48 @@ after_functions['login'] = function (json){
     }
 };
 /*=========================================================*/
+
+after_functions['monarchy-add'] = function (json) {
+    responseModal(json.status, json.message);
+}
+
+after_functions['monarchy-list'] = function (json) {
+    if(json.status === 'success'){
+        let str = '';
+        $.each(json.records, function (key, monarchy) {
+            str += '<div class="row mt-4">';
+                str += '<div class="col-md-4 ps-4"><i class="la la-crown"></i> '+monarchy.monarchy_name+'</div>';
+                str += '<div class="col-md-8 text-end">';
+                    str += '<a href="line-succession?monarchy='+monarchy.id+'" class="btn btn-success text-small me-1"><i class="la la-chain"></i> Line of Succession</a>';
+                    str += '<a href="member-add?monarchy='+monarchy.id+'" class="btn btn-light-grey text-small me-1"><i class="la la-user-plus"></i> Add Member</a>';
+                    str += '<a href="family-tree?monarchy='+monarchy.id+'" class="btn btn-light-grey text-small me-1"><i class="la la-user-friends"></i> Family Tree</a>';
+                    str += '<a href="monarchy-edit?monarchy='+monarchy.id+'" class="btn btn-light-grey text-small me-1"><i class="la la-pencil"></i> Edit</a>';
+                str += '</div>';
+            str += '</div>';
+        });
+        $('#monarchy-list').html(str);
+    }
+}
+
+after_functions['monarchy-get'] = function (json) {
+    if (json.status === 'success'){
+        $('#monarchy-name').html('| <i class="la la-crown"></i> '+json.records[0].monarchy_name);
+    }
+}
+
+after_functions['member-list-get'] = function (json) {
+    let str = '<option value="0">Please select a parent</option>';
+    if (json.status === "success"){
+        $.each(json.records, function (key, member) {
+            str += '<option value="'+member.id+'">'+member.member_name+'</option>';
+        })
+        $('#parent').html(str);
+    }else{
+        console.log('failed')
+        $('#parent').html(str);
+    }
+}
+
+after_functions['member-add'] = function (json) {
+    responseModal(json.status, json.message);
+}

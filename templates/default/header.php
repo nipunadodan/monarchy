@@ -26,6 +26,7 @@
     <script src="<?php echo TEMPLATE_URL?>js/jquery.min.js"></script>
     <script src="<?php echo SITE_URL?>vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo TEMPLATE_URL?>js/scripts.js"></script>
+    <script src="<?php echo INC_JS_URL?>websql.js"></script>
     <script src="<?php echo INC_JS_URL?>scripts.js"></script>
 </head>
 <body>
