@@ -1,0 +1,5 @@
+Options +FollowSymLinks -MultiViews
+RewriteEngine on
+RewriteRule ^([A-Za-z0-9-_]+)/?$ index.php?page=$1 [L,QSA]
+RewriteRule ^([A-Za-z0-9-_]+)/([A-Za-z0-9-_]+)/?$ index.php?page=$1&id=$2 [L,QSA]
+RewriteRule ^([A-Za-z0-9-_]+)/([A-Za-z0-9-_]+)/([A-Za-z0-9-_]+)?$ index.php?page=$1&id=$2&id=$3 [L,QSA]

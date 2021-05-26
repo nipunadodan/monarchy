@@ -1,0 +1,71 @@
+$gray: #535A6B;
+$dark_gray: #cfcfcf;
+$light_gray: #dfdfdf;
+$xlightgray : #eaeaea;
+$primary : #ff9d00; /*modified the primary colour <- RIGHT HERE!! Yeeei
+*/
+$health : #0a8006;
+
+@import "../../../vendor/twbs/bootstrap/scss/functions";
+@import "../../../vendor/twbs/bootstrap/scss/mixins";
+
+@import "../../../vendor/twbs/bootstrap/scss/variables";
+$primary : $orange;
+$custom-spacers: (
+        6: $spacer * 6,
+        7: $spacer * 9,
+        8: $spacer * 12,
+);
+$spacers: map-merge($spacers, $custom-spacers);
+
+$custom-colours:(
+        theme:$health,
+        light-grey:$gray-400,
+        xlight-grey:$gray-200,
+);
+$theme-colors: map-merge($theme-colors, $custom-colours);
+
+@import "../../../vendor/twbs/bootstrap/scss/utilities";
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "width" : map-merge(
+      map-get($utilities, "width"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "width"), "values"),
+            (10:10%),
+        )
+      )
+    )
+  )
+);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "cursor": (
+      property: cursor,
+      class: cursor,
+      values: auto pointer grab,
+    ),
+    "nsd-form-input": (
+      property: margin,
+      class: form-input,
+      values: 0,
+    )
+  )
+);
+
+/* // Create your own map
+$custom-colors: (
+  "custom-color": #900
+);
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors); */
+
+@import "../../../vendor/twbs/bootstrap/scss/bootstrap.scss";
+
+@import 'custom';

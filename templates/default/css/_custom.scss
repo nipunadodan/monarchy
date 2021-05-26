@@ -1,0 +1,249 @@
+/*!
+ * Orange v3.0.0 (https://nipunadodan.com/orange)
+ * Copyright 2011-2021 Nipuna Dodantenna
+ * Licensed under GNUv3 (https://github.com/nipunadodan/orange/blob/master/LICENSE)
+ */
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+pre {
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  background: #dfdfdf;
+  border-left: 6px solid var(--gray);
+  padding: 15px;
+}
+
+.text-thin{
+  font-weight: 100;
+}
+
+.text-bold{
+  font-weight: 500;
+}
+
+.text-small{
+  font-size: 0.8rem;
+}
+
+.text-tight{
+
+}
+
+.text-loose{
+  letter-spacing: .4em;
+}
+
+/* navigation */
+nav{
+  &.bg-dark{
+    a{
+      color: var(--white);
+    }
+  }
+}
+
+/* form */
+.form{
+  label{
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    font-size: 0.8rem;
+  }
+  textarea{
+    height: 100px;
+  }
+  input, textarea, select{
+    font-size: 0.8rem;
+    background: #ffffff;
+    cursor: pointer;
+    width: 100%;
+    border: 1px solid $light_gray;
+    padding: 5px 8px;
+    border-radius: 3px;
+    outline: none;
+    box-shadow:none !important;
+    &.form-control:focus{
+      border-color: $light_gray;
+      box-shadow: none;
+    }
+
+    &[type="submit"], &.submit[type="button"]{
+      color: #ffffff;
+      margin: 1rem 0;
+      background: $primary;
+      border: 0;
+      outline: 0;
+      border-radius: 3px;
+      padding: 5px;
+      &:hover{
+        color: #ffffff;
+        background: darken($primary, 3%);
+      }
+      &.bg-dark-yellow{
+        color: #ffffff;
+        background: darken($primary, 8%);
+        &:hover{
+          background: darken($primary, 12%);
+        }
+      }
+    }
+
+    &[type="reset"]{
+      color: $gray;
+      text-align: right;
+      margin: 1rem 0;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      border-radius: 3px;
+      padding: 5px;
+    }
+
+    &[type="checkbox"]{
+      vertical-align: text-bottom;
+      width: auto;
+    }
+  }
+  .intl-tel-input{
+    width: 100%;
+    .selected-dial-code{
+      font-size: 0.8rem;
+    }
+  }
+
+  input[type=checkbox]{
+    display:none;
+    &+label{
+      cursor: pointer;
+      &:before {
+        font-family: "Line Awesome Free";
+        font-weight: 900;
+        display: inline-block;
+        content: "\f04d";
+        letter-spacing: 5px;
+        font-size: 1.4em;
+        position: relative;
+        top: 2px;
+      }
+    }
+    &:checked + label:before {
+      content: "\f14a";
+      font-weight: 400;
+      letter-spacing: 5px;
+      font-size: 1.4em;
+      position: relative;
+      top: 2px;
+    }
+  }
+
+  input[type=radio]{
+    display:none;
+    &+label:before {
+      font-family: "Line Awesome Free";
+      display: inline-block;
+      font-size: 1.4em;
+      content: "\f111";
+      letter-spacing: 5px;
+      position: relative;
+      top: 2px;
+    }
+
+    &:checked + label:before {
+      content: "\f192";
+      letter-spacing: 5px; }
+  }
+
+  .radio-group {
+    display: block;
+    overflow: hidden;
+    input[type=radio] {
+      position: absolute;
+      visibility: hidden;
+      //display: none;
+    }
+
+    label {
+      color: $gray;
+      cursor: pointer;
+      padding: 5px 20px;
+      border: solid 1px $light_gray;
+      border-radius: 10px;
+      margin: 5px 0;
+      width: 100%;
+      text-align: center;
+      &:hover{
+        background: $primary;
+        color: #000000;
+        border: solid 1px $primary;
+      }
+    }
+
+    input[type=radio]:checked + label {
+      color: #000000;
+      background: $primary;
+      border: solid 1px $primary;
+    }
+
+    /*label + input[type=radio] + label {
+      border-left: solid $borderWidth $primary;
+    }*/
+  }
+
+  select{
+    padding: 8px;
+  }
+} //end roo-form
+
+.datetimepicker{
+  font-size: 0.8rem;
+}
+
+@media (min-width: 768px) {
+  .wickedpicker {
+    width: 152px;
+    z-index: 99;
+  }
+}
+
+
+/* Modal */
+.modal-dialog .bg-danger, .modal-dialog .bg-info, .modal-dialog .bg-success{
+  color: #ffffff !important;
+}
+
+#success-modal-okay{
+  border-radius: 0;
+  border-bottom-right-radius: .25rem!important;
+  border-bottom-left-radius: .25rem!important;
+}
+
+/* custom styles */
+#weather{
+  font-family: var(--bs-font-monospace);
+  border-left: 6px solid var(--bs-gray);
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;
+}
+
+/* mbti */
+.bg-cogs:nth-child(1){
+  background: $orange-600;
+  color: #ffffff;
+}
+.bg-cogs:nth-child(2){
+  background: $orange-400;
+}
+.bg-cogs:nth-child(3){
+  background: $orange-200;
+}
+.bg-cogs:nth-child(4){
+  background: $orange-100;
+}

@@ -1,0 +1,23 @@
+{
+    "name": "nipunadodan/orange",
+    "description": "A lightweight PHP framework",
+    "require": {
+        "php": "^7.2",
+        "ext-json": "*",
+        "ext-curl": "*",
+        "twbs/bootstrap": "^5",
+        "guzzlehttp/guzzle": "^7.3",
+        "catfan/medoo": "^1.7",
+        "ext-gd": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "modules/"
+        }
+    },
+    "suggest": {
+        "phpmailer/phpmailer": "Allows sending mails through it",
+        "guzzlehttp/guzzle": "Allows communicating to APIs via http requests",
+        "catfan/medoo": "Allows to do database queries more easily"
+    }
+}
