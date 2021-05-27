@@ -8,10 +8,10 @@
             <input id="member_name" name="member_name" required placeholder="Member Name">
 
             <label for="official_title">Official Title</label>
-            <input id="official_title" name="official_title" required placeholder="Official Title">
+            <input id="official_title" name="official_title" placeholder="Official Title">
 
             <label for="description">Description</label>
-            <textarea id="description" name="description" required placeholder="Description"></textarea>
+            <textarea id="description" name="description" placeholder="Description"></textarea>
 
             <label for="parent">Parent</label>
             <select id="parent" name="parent" required></select>
@@ -23,7 +23,7 @@
             <label for="dob" class="d-block mt-3">Date of Birth</label>
             <input type="date" id="dob" name="dob" required placeholder="Date of Birth">
 
-            <input type="hidden" name="monarchy" value="<?php echo isset($_GET['monarchy']) && $_GET['monarchy'] !== '' ? $_GET['monarchy'] : 0?>">
+            <input type="hidden" id="monarchy" name="monarchy" value="<?php echo isset($_GET['monarchy']) && $_GET['monarchy'] !== '' ? $_GET['monarchy'] : 0?>">
 
             <input class="w-auto px-5 py-2" type="submit" value="Add">
         </form>

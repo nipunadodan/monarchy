@@ -5,7 +5,7 @@ use Orange\Db;
 $database = new Db();
 $error = '';
 
-if(isset($_POST['description'], $_POST['member_name'], $_POST['parent']) && $_POST['description'] !== '' && $_POST['member_name'] !== '' && $_POST['parent'] !== '') {
+if(isset($_POST['dob'], $_POST['member_name'], $_POST['parent']) && $_POST['dob'] !== '' && $_POST['member_name'] !== '' && $_POST['parent'] !== '') {
     try {
         $insert = $database->insert("members", [
             "description" => $_POST['description'],

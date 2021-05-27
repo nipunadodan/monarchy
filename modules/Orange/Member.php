@@ -10,7 +10,8 @@ class Member{
             '*'
             ,[
                 'monarchy' => $monarchy,
-                'status' => 5
+                'status' => 5,
+                'ORDER' => 'dateofbirth'
             ]);
     }
 }

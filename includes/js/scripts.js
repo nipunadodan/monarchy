@@ -166,7 +166,7 @@ after_functions['monarchy-list'] = function (json) {
             str += '<div class="row mt-4">';
                 str += '<div class="col-md-4 ps-4"><i class="la la-crown"></i> '+monarchy.monarchy_name+'</div>';
                 str += '<div class="col-md-8 text-end">';
-                    str += '<a href="line-succession?monarchy='+monarchy.id+'" class="btn btn-success text-small me-1"><i class="la la-chain"></i> Line of Succession</a>';
+                    str += '<a href="line-succession?monarchy='+monarchy.id+'" class="btn btn-success text-small me-1"><i class="la la-link"></i> Line of Succession</a>';
                     str += '<a href="member-add?monarchy='+monarchy.id+'" class="btn btn-light-grey text-small me-1"><i class="la la-user-plus"></i> Add Member</a>';
                     str += '<a href="family-tree?monarchy='+monarchy.id+'" class="btn btn-light-grey text-small me-1"><i class="la la-user-friends"></i> Family Tree</a>';
                     str += '<a href="monarchy-edit?monarchy='+monarchy.id+'" class="btn btn-light-grey text-small me-1"><i class="la la-pencil"></i> Edit</a>';
@@ -198,4 +198,54 @@ after_functions['member-list-get'] = function (json) {
 
 after_functions['member-add'] = function (json) {
     responseModal(json.status, json.message);
+    if(json.status === 'success'){
+        ajaxDirect({
+            callback: 'member-list-get',
+            data:{
+                'id':$('#monarchy').val()
+            }
+        });
+        $('form')[0].reset();
+    }
+}
+
+function getAge(d1){
+    d1 = new Date(d1+'Z');
+    d2 = new Date();
+    const diff = d2.getTime() - d1.getTime();
+    console.log(diff);
+    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+    const days = (diff / (1000 * 60 * 60 * 24)) % 365.25;
+    return years+' years '+Math.ceil(days)+' days';
+}
+
+function recurse(records, i){
+    //let i =0;
+    let html = '<ul class="list-unstyled" style="list-style-type: none">';
+    $.each (records, function (keys, value) {
+        const age = getAge(value.dob);
+        html += '<li><span class="d-block py-3">' + i++  +' - '+ value.name+', <b>'+value.title+'</b> '+
+            '<span class="py-1 px-2 rounded bg-light-grey">'+ value.dob +'</span> ' +
+            '<span class="py-1 px-2 rounded bg-light-grey">'+age+'</span> ' +
+             (parseInt(value.sex) ? '<span class=" bg-primary py-1 px-1 rounded text-white"><i class="la la-mars la-fw"></i></span>' : '<span class=" bg-danger py-1 px-1 rounded text-white"><i class="la la-venus la-fw"></i></span>')+'</span>';
+        if (value.hasOwnProperty('children')){
+            temp = recurse(value.children, i);
+            html += temp[0];
+            i = temp[1];
+        }
+        html += '</li>';
+    });
+
+    html += '</ul>';
+
+    return [html, i];
+}
+
+after_functions['line-succession'] = function (json) {
+    if (json.status === 'success'){
+        const temp2 = recurse(json.records, 0);
+        const html2 = temp2[0];
+        //console.log(html2);
+        $('#hierarchy').html(html2);
+    }
 }

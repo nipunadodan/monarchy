@@ -3,6 +3,7 @@
  * Copyright 2011-2021 Nipuna Dodantenna
  * Licensed under GNUv3 (https://github.com/nipunadodan/orange/blob/master/LICENSE)
  */
+$primary : #ff9d00;
 body{
   font-family: 'Roboto', sans-serif;
 }
@@ -233,7 +234,10 @@ nav{
   word-wrap: break-word;
 }
 
-#monarchy-list{
-  .row{
+#hierarchy{
+  ul{
+    li{
+      //padding: 15px 0;
+    }
   }
 }
