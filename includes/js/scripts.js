@@ -213,23 +213,25 @@ function getAge(d1){
     d1 = new Date(d1+'Z');
     d2 = new Date();
     const diff = d2.getTime() - d1.getTime();
-    console.log(diff);
+    //console.log(diff);
     const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-    const days = (diff / (1000 * 60 * 60 * 24)) % 365.25;
-    return years+' years '+Math.ceil(days)+' days';
+    const days = Math.ceil((diff / (1000 * 60 * 60 * 24)) % 365.25);
+    return [years,days];
 }
 
-function recurse(records, i){
+function lineSuccession(records, i){
     //let i =0;
     let html = '<ul class="list-unstyled" style="list-style-type: none">';
     $.each (records, function (keys, value) {
         const age = getAge(value.dob);
-        html += '<li><span class="d-block py-3">' + i++  +' - '+ value.name+', <b>'+value.title+'</b> '+
-            '<span class="py-1 px-2 rounded bg-light-grey">'+ value.dob +'</span> ' +
-            '<span class="py-1 px-2 rounded bg-light-grey">'+age+'</span> ' +
-             (parseInt(value.sex) ? '<span class=" bg-primary py-1 px-1 rounded text-white"><i class="la la-mars la-fw"></i></span>' : '<span class=" bg-danger py-1 px-1 rounded text-white"><i class="la la-venus la-fw"></i></span>')+'</span>';
+        html += '<li><span class="d-block py-3"><span style="display:inline-block; width: 35px" class="py-1 px-2 me-2 rounded bg-secondary text-white text-center">' +( i === 0 ? '<i class="la la-crown"></i>' : i)  +'</span> '+ value.name+', <b title="Title">'+value.title+'</b> '+
+            '<span class="py-1 px-2 ms-4 rounded bg-light-grey" title="Date of Birth">'+ value.dob +'</span> ' +
+            '<span class="py-1 px-2 rounded bg-light-grey" title="Age">'+age[0]+' years '+age[1]+' days</span> ' +
+             (parseInt(value.sex) ? '<span class=" bg-primary py-1 px-1 rounded text-white" title="Gender"><i class="la la-mars la-fw"></i></span>' : '<span class=" bg-danger py-1 px-1 rounded text-white" title="Gender"><i class="la la-venus la-fw"></i></span>')+'</span>';
+        i++;
+
         if (value.hasOwnProperty('children')){
-            temp = recurse(value.children, i);
+            temp = lineSuccession(value.children, i);
             html += temp[0];
             i = temp[1];
         }
@@ -243,7 +245,37 @@ function recurse(records, i){
 
 after_functions['line-succession'] = function (json) {
     if (json.status === 'success'){
-        const temp2 = recurse(json.records, 0);
+        const temp2 = lineSuccession(json.records, 0);
+        const html2 = temp2[0];
+        //console.log(html2);
+        $('#hierarchy').html(html2);
+    }
+}
+
+function familyTree(records, i){
+    //let i =0;
+    let html = '<ul>';
+    $.each (records, function (keys, value) {
+       const age = getAge(value.dob);
+        html += '<li><span class="tf-nc bg-light-grey rounded border-0">'+ value.name+' <span class="py-1 px-2 rounded bg-secondary text-small text-white" title="Age">'+age[0]+'Y</span></span> ';
+        i++;
+
+        if (value.hasOwnProperty('children')){
+            temp = familyTree(value.children, i);
+            html += temp[0];
+            i = temp[1];
+        }
+        html += '</li>';
+    });
+
+    html += '</ul>';
+
+    return [html, i];
+}
+
+after_functions['family-tree'] = function (json) {
+    if (json.status === 'success'){
+        const temp2 = familyTree(json.records, 0);
         const html2 = temp2[0];
         //console.log(html2);
         $('#hierarchy').html(html2);

@@ -5,9 +5,9 @@ use Orange\Db;
 $members = (new Db())->select('members',
     '*'
     ,[
-        'monarchy' => isset($_POST['id']) && $_POST['id'] !== '' ? $_POST['id'] : 1,
+        'monarchy' => 1,
         'status[>=]' => 5,
-        'ORDER' => ['sex' => 'DESC','dateofbirth']
+        'ORDER' => 'dateofbirth'
     ]);
 
 $list = [];
