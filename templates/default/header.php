@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Nipuna Dodantenna">
-    <meta name="description" content="Experienced Fullstack Web and UX developer who is also a travel buff with a high enthusiasm in travel and landscape photography">
-    <meta name="keywords" content="web, ui, ux, developer, php, HTML, HTML5, CSS, CSS3, jQuery, MySQL, Dreamweaver, Photoshop, Illustrator, InDesign">
+    <meta name="description" content="A simple algorithm to determine the line of succession of a Monarchy.">
+    <meta name="keywords" content="monarchy, line of succession, monarch, heirs, british monarchy, king, queen, price, princess, duke, viscount, earl, prince of wales, duke of edinburgh, earl of wessex, princess royal">
     <meta name="theme-color" content="#1f89e4" />
 
     <title><?php echo SITE_NAME?></title>
